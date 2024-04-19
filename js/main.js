@@ -1,127 +1,132 @@
-// Dummy data for courses, users, and enrollments
-let courses = [
-    { id: 1, title: "Mathematics", description: "Learn basic math concepts", professor: "Smith" },
-    { id: 2, title: "Physics", description: "Explore the world of physics", professor: "Johnson" },
-    { id: 3, title: "Programming", description: "Introduction to programming", professor: "Williams" },
-    { id: 4, title: "Biology", description: "Study of living organisms", professor: "Brown" },
-    { id: 5, title: "Chemistry", description: "Explore the composition of substances", professor: "Taylor" },
-    { id: 6, title: "History", description: "Understanding past events", professor: "Anderson" },
-    { id: 7, title: "Literature", description: "Explore literary works", professor: "Martinez" },
-    { id: 8, title: "Geography", description: "Study of the Earth's surface", professor: "Garcia" },
-    { id: 9, title: "Computer Science", description: "Introduction to computer programming", professor: "Hernandez" },
-    { id: 10, title: "Art", description: "Exploration of artistic expression", professor: "Young" }
+// Dummy data for  users
+
+let users = [
+    { id: 1, name: "John Doe", email: "john@usf.edu", country: "USA", gender: "Male" },
+    { id: 2, name: "Jane Smith", email: "jane@usf.edu", country: "USA", gender: "Female" },
+    { id: 3, name: "Alice Johnson", email: "alice@usf.edu", country: "France", gender: "Female" },
+    { id: 4, name: "Bob Brown", email: "bob@usf.edu", country: "France", gender: "Male" },
+    { id: 5, name: "Eva Lee", email: "eva@usf.edu", country: "India", gender: "Female" },
+    { id: 6, name: "Mike Clark", email: "mike@usf.edu", country: "India", gender: "Male" },
+    { id: 7, name: "Sarah White", email: "sarah@usf.edu", country: "USA", gender: "Female" },
+    { id: 8, name: "David Lee", email: "david@usf.edu", country: "India", gender: "Male" },
+    { id: 9, name: "Emily Johnson", email: "emily@usf.edu", country: "France", gender: "Female" },
+    { id: 10, name: "Michael Smith", email: "michael@usf.edu", country: "USA", gender: "Male" },
+    { id: 11, name: "Maria Garcia", email: "maria@usf.edu", country: "India", gender: "Female" },
+    { id: 12, name: "Daniel Martinez", email: "daniel@usf.edu", country: "France", gender: "Male" },
+    { id: 13, name: "Laura Taylor", email: "laura@usf.edu", country: "USA", gender: "Female" },
+    { id: 14, name: "Carlos Hernandez", email: "carlos@usf.edu", country: "India", gender: "Male" },
+    { id: 15, name: "Sophia Brown", email: "sophia@usf.edu", country: "France", gender: "Female" },
+    { id: 16, name: "William Lee", email: "william@usf.edu", country: "USA", gender: "Male" },
+    { id: 17, name: "Olivia Johnson", email: "olivia@usf.edu", country: "India", gender: "Female" },
+    { id: 18, name: "James Garcia", email: "james@usf.edu", country: "France", gender: "Male" },
+    { id: 19, name: "Isabella Clark", email: "isabella@usf.edu", country: "USA", gender: "Female" },
+    { id: 20, name: "Alexander Smith", email: "alexander@usf.edu", country: "India", gender: "Male" }
 ];
 
 
-
-
-
-
-
-
-// Function to display courses
-function displayCourses() {
-    const coursesTable = document.getElementById('courses-table');
-    coursesTable.innerHTML = ''; // Clear existing data
-    const headerRow = coursesTable.insertRow();
+// Function to display users
+function displayUsers() {
+    const usersTable = document.getElementById('users-table');
+    usersTable.innerHTML = ''; // Clear existing data
+    const headerRow = usersTable.insertRow();
     const idHeader = document.createElement('th');
     idHeader.textContent = 'Id';
     headerRow.appendChild(idHeader);
     const titleHeader = document.createElement('th');
-    titleHeader.textContent = 'CourseName';
+    titleHeader.textContent = 'StudentName';
     headerRow.appendChild(titleHeader);
     const descriptionHeader = document.createElement('th');
-    descriptionHeader.textContent = 'Description';
+    descriptionHeader.textContent = 'Email';
     headerRow.appendChild(descriptionHeader);
-    const professorHeader = document.createElement('th');
-    professorHeader.textContent = 'Professor';
-    headerRow.appendChild(professorHeader);
-    courses.forEach(course => {
-        const row = coursesTable.insertRow();
+    const countryHeader = document.createElement('th');
+    countryHeader.textContent = 'Country';
+    headerRow.appendChild(countryHeader);
+    const genderHeader = document.createElement('th');
+    genderHeader.textContent = 'Gender';
+    headerRow.appendChild(genderHeader);
+
+    users.forEach(user => {
+        const row = usersTable.insertRow();
         row.innerHTML = `
-            <td>${course.id}</td>
-            <td>${course.title}</td>
-            <td>${course.description}</td>
-            <td>${course.professor}</td>
-             <td><button onclick="editCourse(${course.id})">Edit</button></td>
-            <td><button onclick="deleteCourse(${course.id})">Delete</button></td>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.country}</td>
+            <td>${user.gender}</td>
+            <td><button onclick="editUser(${user.id})">Edit</button></td>
+            <td><button onclick="deleteUser(${user.id})">Delete</button></td>
+           
         `;
     });
 }
 
-
-
-
-// Function to add a new course
-
-// Function to add a new course
-
-function addCourse() {
-    const title = prompt("Enter title for new course:");
-    const description = prompt("Enter description for new course:");
-    const professor = prompt("Enter description for new course:");
-    if (title && description && professor) {
-        const newCourse = {
-            id: courses.length + 1,
-            title: title,
-            description: description,
-            professor: professor
+// Function to add a new user
+function addUser() {
+    const name = prompt("Enter title for new user:");
+    const email = prompt("Enter email for new user:");
+    const country = prompt("Enter country for new user:");
+    const gender = prompt("Enter gender for new user:");
+    if (name && email && country && gender) {
+        const newUser = {
+            id: users.length + 1,
+            name: name,
+            email: email,
+            country: country,
+            gender: gender
         };
-        courses.push(newCourse);
-        displayCourses();
+        users.push(newUser);
+        displayUsers();
     } else {
-        alert("Title and description are required for adding a new course.");
+        alert("Title and description are required for adding a new courses.");
     }
 }
 
-// Function to edit a course
-function editCourse(id) {
-    const course = courses.find(course => course.id === id);
-    if (course) {
-        const newTitle = prompt("Enter new title:", course.title);
-        const newDescription = prompt("Enter new description:", course.description);
-        const newProfessor = prompt("Enter new description:", course.professor);
-        if (newTitle !== null && newDescription !== null && newProfessor !== null) {
-            course.title = newTitle;
-            course.description = newDescription;
-            course.professor = newProfessor
-            displayCourses();
-        }
-    } else {
-        alert("Course not found!");
-    }
-}
-// Function to delete a course
-function deleteCourse(id) {
-    const index = courses.findIndex(course => course.id === id);
+
+// Function to edit a user
+function editUser(id) {
+    const name = prompt("Enter new name:");
+    const email = prompt("Enter new email:");
+    const country = prompt("Enter new country:");
+    const gender = prompt("Enter new gender:");
+    const index = users.findIndex(user => user.id === id);
     if (index !== -1) {
-        courses.splice(index, 1);
-        displayCourses();
+        users[index].name = name;
+        users[index].email = email;
+        users[index].country = country;
+        users[index].gender = gender;
+
+        displayUsers();
     } else {
-        alert("Course not found!");
+        alert("User not found!");
     }
+}
+
+// Function to delete a user
+function deleteUser(id) {
+    const index = users.findIndex(user => user.id === id);
+    if (index !== -1) {
+        users.splice(index, 1);
+        displayUsers();
+    } else {
+        alert("User not found!");
+    }
+
+
 }
 
 
 
+
+
+// Call functions to display initial data
+// Call functions to display initial data
 document.addEventListener("DOMContentLoaded", function () {
-    /*displayUsers();*/
+    displayUsers();
     displayCourses();
-    /*displayEnrollments();*/
+    displayEnrollments();
 });
 
-// JavaScript for adding active class to clicked navigation item
-document.addEventListener("DOMContentLoaded", function () {
-    const navLinks = document.querySelectorAll("nav ul li a");
-    navLinks.forEach(link => {
-        link.addEventListener("click", function () {
-            navLinks.forEach(link => link.classList.remove("active"));
-            this.classList.add("active");
-        });
-    });
-});
-
-
+       
 
 
 
