@@ -37,6 +37,110 @@ let users = [
     { id: 20, name: "Alexander Smith", email: "alexander@usf.edu", country: "India", gender: "Male" }
 ];
 
+
+let enrollments = [
+    { id: 1, userName: "John Doe", courseName: "Physics", professor: "Johnson" },
+    { id: 2, userName: "Jane Smith", courseName: "Mathematics", professor: "Smith" },
+    { id: 3, userName: "Jane Smith", courseName: "Physics", professor: "Johnson" },
+    { id: 4, userName: "Alice Johnson", courseName: "Programming", professor: "Williams" },
+    { id: 5, userName: "Bob Brown", courseName: "Physics", professor: "Johnson" },
+    { id: 6, userName: "Eva Lee", courseName: "Mathematics", professor: "Smith" },
+    { id: 7, userName: "Mike Clark", courseName: "Mathematics", professor: "Smith" },
+    { id: 8, userName: "Sarah White", courseName: "Programming", professor: "Williams" },
+    { id: 9, userName: "David Lee", courseName: "Physics", professor: "Johnson" },
+    { id: 10, userName: "Emily Johnson", courseName: "Mathematics", professor: "Smith" },
+    { id: 11, userName: "Maria Garcia", courseName: "Chemistry", professor: "Taylor" },
+    { id: 12, userName: "Daniel Martinez", courseName: "History", professor: "Anderson" },
+    { id: 13, userName: "Laura Taylor", courseName: "Literature", professor: "Martinez" },
+    { id: 14, userName: "Carlos Hernandez", courseName: "Geography", professor: "Garcia" },
+    { id: 15, userName: "Sophia Brown", courseName: "Computer Science", professor: "Hernandez" },
+    { id: 16, userName: "William Lee", courseName: "Art", professor: "Young" },
+    { id: 17, userName: "Olivia Johnson", courseName: "Biology", professor: "Brown" },
+    { id: 18, userName: "James Garcia", courseName: "Physics", professor: "Johnson" },
+    { id: 19, userName: "Isabella Clark", courseName: "Chemistry", professor: "Taylor" },
+    { id: 20, userName: "Alexander Smith", courseName: "Mathematics", professor: "Smith" }
+];
+
+
+// Function to display enrollments
+function displayEnrollments() {
+    const enrollmentsTable = document.getElementById('enrollments-table');
+    enrollmentsTable.innerHTML = ''; // Clear existing data
+    const headerRow = enrollmentsTable.insertRow();
+    const idHeader = document.createElement('th');
+    idHeader.textContent = 'Id';
+    headerRow.appendChild(idHeader);
+    const titleHeader = document.createElement('th');
+    titleHeader.textContent = 'StudentName';
+    headerRow.appendChild(titleHeader);
+    const descriptionHeader = document.createElement('th');
+    descriptionHeader.textContent = 'CourseName';
+    headerRow.appendChild(descriptionHeader);
+    const eProfessorHeader = document.createElement('th');
+    eProfessorHeader.textContent = 'ProfessorName';
+    headerRow.appendChild(eProfessorHeader);
+    enrollments.forEach(enrollment => {
+        const row = enrollmentsTable.insertRow();
+        row.innerHTML = `
+            <td>${enrollment.id}</td>
+            <td>${enrollment.userName}</td>
+            <td>${enrollment.courseName}</td>
+            <td>${enrollment.professor}</td>
+            <td><button onclick="editEnrollment(${enrollment.id})">Edit</button></td>
+            <td><button onclick="deleteEnrollment(${enrollment.id})">Delete</button></td>
+        `;
+    });
+}
+
+// Function to add a new enrollment
+function addEnrollment() {
+    const userName = prompt("Enter user name for new enrollment:");
+    const courseName = prompt("Enter course name for new enrollment:");
+    const professor = prompt("Enter professor name for new enrollment:");
+    if (userName && courseName && professor) {
+        const newEnrollment = {
+            id: enrollments.length + 1,
+            userName: userName,
+            courseName: courseName,
+            professor: professor
+        };
+        enrollments.push(newEnrollment);
+        displayEnrollments();
+    } else {
+        alert("User name and course name are required for adding a new enrollment.");
+    }
+}
+
+// Function to edit an enrollment
+function editEnrollment(id) {
+    const enrollment = enrollments.find(enrollment => enrollment.id === id);
+    if (enrollment) {
+        const newUserName = prompt("Enter new user name:", enrollment.userName);
+        const newCourseName = prompt("Enter new course name:", enrollment.courseName);
+        const newProfessorName = prompt("Enter new course name:", enrollment.professorName);
+        if (newUserName !== null && newCourseName !== null && newProfessorName != null) {
+            enrollment.userName = newUserName;
+            enrollment.courseName = newCourseName;
+            enrollment.professor = newProfessorName;
+            displayEnrollments();
+        }
+    } else {
+        alert("Enrollment not found!");
+    }
+}
+
+// Function to delete an enrollment
+function deleteEnrollment(id) {
+    const index = enrollments.findIndex(enrollment => enrollment.id === id);
+    if (index !== -1) {
+        enrollments.splice(index, 1);
+        displayEnrollments();
+    } else {
+        alert("Enrollment not found!");
+    }
+}
+
+
 // Function to display courses
 function displayCourses() {
     const coursesTable = document.getElementById('courses-table');
@@ -228,6 +332,11 @@ document.addEventListener("DOMContentLoaded", function () {
     /*displayEnrollments();*/
 });
      
+document.addEventListener("DOMContentLoaded", function () {
+    /*displayUsers();*/
+    /*displayCourses();*/
+    displayEnrollments();
+});
 
 
 
