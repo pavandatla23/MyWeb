@@ -59,7 +59,7 @@ function displayCourses() {
 function addCourse() {
     const title = prompt("Enter title for new course:");
     const description = prompt("Enter description for new course:");
-    const professor = prompt("Enter description for new course:");
+    const professor = prompt("Enter professor name for new course:");
     if (title && description && professor) {
         const newCourse = {
             id: courses.length + 1,
@@ -80,7 +80,7 @@ function editCourse(id) {
     if (course) {
         const newTitle = prompt("Enter new title:", course.title);
         const newDescription = prompt("Enter new description:", course.description);
-        const newProfessor = prompt("Enter new description:", course.professor);
+        const newProfessor = prompt("Enter new professor name:", course.professor);
         if (newTitle !== null && newDescription !== null && newProfessor !== null) {
             course.title = newTitle;
             course.description = newDescription;
