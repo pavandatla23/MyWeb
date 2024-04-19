@@ -15,10 +15,6 @@ let courses = [
 
 
 
-
-
-
-
 // Function to display courses
 function displayCourses() {
     const coursesTable = document.getElementById('courses-table');
@@ -50,12 +46,7 @@ function displayCourses() {
 }
 
 
-
-
 // Function to add a new course
-
-// Function to add a new course
-
 function addCourse() {
     const title = prompt("Enter title for new course:");
     const description = prompt("Enter description for new course:");
@@ -101,8 +92,6 @@ function deleteCourse(id) {
         alert("Course not found!");
     }
 }
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
     /*displayUsers();*/
