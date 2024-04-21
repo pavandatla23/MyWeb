@@ -261,6 +261,27 @@ function addEnrollment() {
 
     displayData();
 }
+//function to addcourse
+function addCourse() {
+    const newId = prompt("Enter new ID (must be numeric):");
+    const newTitle = prompt("Enter new Title (alphabetic only):");
+    const newDescription = prompt("Enter new Description (free text):");
+    const newProfessor = prompt("Enter new Professor's Name (alphabetic only):");
+
+    if (!newId || !newTitle || !newDescription || !newProfessor) {
+        alert("All fields must be filled!");
+        return;
+    }
+
+    courses.push({
+        id: newId,
+        title: newTitle,
+        description: newDescription,
+        professor: newProfessor
+    });
+
+    displayData();
+}
 
 
 // Validation function
