@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="css\" />
-    <Folder Include="img\" />
   </ItemGroup>
 
 </Project>
