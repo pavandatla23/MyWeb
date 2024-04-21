@@ -20,22 +20,26 @@ nav {
     nav ul {
         list-style-type: none;
         padding: 0;
+        margin: 0;
+        display: flex; /* Use flexbox for horizontal layout */
     }
 
         nav ul li {
-            display: inline;
             margin-right: 20px;
         }
+
+            nav ul li:last-child {
+                margin-right: 0; /* Remove margin for the last item */
+            }
 
             nav ul li a {
                 color: white;
                 text-decoration: none;
+                padding: 10px;
             }
 
-
-
 main {
-    padding: 20px;
+    padding: 15px;
 }
 
 section {
@@ -43,17 +47,17 @@ section {
 }
 
 header {
-    background-color: green
+    background-color: green;
 }
-
 
 table {
     width: 100%;
     border-collapse: collapse;
+    border: solid black;
 }
 
     table th, table td {
-        border: 1px solid #ddd;
+        border: 5px solid black;
         padding: 8px;
         text-align: left;
     }
@@ -61,31 +65,15 @@ table {
     table th {
         background-color: green;
     }
-/*footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}*/
-@media screen and (max-width: 480px) {
-    /* Adjust styles for small screens (mobile) */
-    header, footer {
-        padding: 5px;
+
+/* Media query for small screens (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
     }
 
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
-
-        nav ul li a:hover {
-            background-color: #555; /* Change to desired hover color */
+        nav ul li {
+            margin-right: 0;
+            margin-bottom: 10px;
         }
-
-    nav ul li.active a {
-        background-color: #555; /* Change to desired color when clicked */
-    }
+}
