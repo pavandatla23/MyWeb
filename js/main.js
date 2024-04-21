@@ -213,7 +213,6 @@ function deleteUser(id) {
 
 
 
-
 // Call functions to display initial data
 // Call functions to display initial data
 document.addEventListener("DOMContentLoaded", function () {
