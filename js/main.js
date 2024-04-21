@@ -36,35 +36,7 @@ let users = [
     { id: 20, name: "Alexander Smith", email: "alexander@usf.edu", country: "India", gender: "Male" }
 ];
 
-// Function to display courses
-function displayCourses() {
-    const coursesTable = document.getElementById('courses-table');
-    coursesTable.innerHTML = ''; // Clear existing data
-    const headerRow = coursesTable.insertRow();
-    const idHeader = document.createElement('th');
-    idHeader.textContent = 'Id';
-    headerRow.appendChild(idHeader);
-    const titleHeader = document.createElement('th');
-    titleHeader.textContent = 'CourseName';
-    headerRow.appendChild(titleHeader);
-    const descriptionHeader = document.createElement('th');
-    descriptionHeader.textContent = 'Description';
-    headerRow.appendChild(descriptionHeader);
-    const professorHeader = document.createElement('th');
-    professorHeader.textContent = 'Professor';
-    headerRow.appendChild(professorHeader);
-    courses.forEach(course => {
-        const row = coursesTable.insertRow();
-        row.innerHTML = `
-            <td>${course.id}</td>
-            <td>${course.title}</td>
-            <td>${course.description}</td>
-            <td>${course.professor}</td>
-             <td><button onclick="editCourse(${course.id})">Edit</button></td>
-            <td><button onclick="deleteCourse(${course.id})">Delete</button></td>
-        `;
-    });
-}
+
 
 let enrollments = [
     { id: 1, userName: "John Doe", courseName: "Physics", professor: "Johnson" },
@@ -158,26 +130,12 @@ function displayData() {
     const dataTable = document.getElementById(currentPageConfig.tableId);
     dataTable.innerHTML = '';  // Clear existing data
 
-// Function to display users
-function displayUsers() {
-    const usersTable = document.getElementById('users-table');
-    usersTable.innerHTML = ''; // Clear existing data
-    const headerRow = usersTable.insertRow();
-    const idHeader = document.createElement('th');
-    idHeader.textContent = 'Id';
-    headerRow.appendChild(idHeader);
-    const titleHeader = document.createElement('th');
-    titleHeader.textContent = 'StudentName';
-    headerRow.appendChild(titleHeader);
-    const descriptionHeader = document.createElement('th');
-    descriptionHeader.textContent = 'Email';
-    headerRow.appendChild(descriptionHeader);
-    const countryHeader = document.createElement('th');
-    countryHeader.textContent = 'Country';
-    headerRow.appendChild(countryHeader);
-    const genderHeader = document.createElement('th');
-    genderHeader.textContent = 'Gender';
-    headerRow.appendChild(genderHeader);
+    const headerRow = dataTable.insertRow();
+    currentPageConfig.fields.forEach(text => {
+        const header = document.createElement('th');
+        header.textContent = text;
+        headerRow.appendChild(header);
+    });
 
     currentPageConfig.data.forEach((item, index) => {
         const row = dataTable.insertRow();
@@ -260,20 +218,49 @@ function addEntry() {
 
 
 
-// Call functions to display initial data
-// Call functions to display initial data
-document.addEventListener("DOMContentLoaded", function () {
-    displayUsers();
-    displayCourses();
-    displayEnrollments();
-});
+function addUser() {
+    const newId = prompt("Enter new ID (must be numeric):");
+    const newName = prompt("Enter new Name (alphabetic only):");
+    const newEmail = prompt("Enter new Email (must contain '@' and a domain):");
+    const newCountry = prompt("Enter new Country (alphabetic only):");
+    const newGender = prompt("Enter new Gender (Male, Female, or Other):");
 
-document.addEventListener("DOMContentLoaded", function () {
-    /*displayUsers();*/
-    displayCourses();
-    /*displayEnrollments();*/
-});
-     
+    if (!newId || !newName || !newEmail || !newCountry || !newGender) {
+        alert("All fields must be filled!");
+        return;
+    }
+
+    users.push({
+        id: newId,
+        name: newName,
+        email: newEmail,
+        country: newCountry,
+        gender: newGender
+    });
+
+    displayData()
+}
+
+function addEnrollment() {
+    const newId = prompt("Enter new ID (must be numeric):");
+    const newStudentName = prompt("Enter new Student Name (alphabetic only):");
+    const newCourseName = prompt("Enter new Course Name (free text):");
+    const newProfessorName = prompt("Enter new Professor Name (alphabetic only):");
+
+    if (!newId || !newStudentName || !newCourseName || !newProfessorName) {
+        alert("All fields must be filled!");
+        return;
+    }
+
+    enrollments.push({
+        id: newId,
+        userName: newStudentName,
+        courseName: newCourseName,
+        professor: newProfessorName
+    });
+
+    displayData();
+}
 
 
 // Validation function

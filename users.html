@@ -9,14 +9,20 @@
 
 
         body {
-            background-color: black;
-            color: white; /* Setting text color to white for better contrast */
+            /* Set background image */
+            background-image: url("./img/Background.jpg");
+            /* Set background size to cover the entire page */
+            background-size: cover;
+            /* Center the background image */
+            background-position: center;
+            /* Set text color to white for better contrast */
+            color: white;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Student Details</h1>
+        <h1>STUDENT DETAILS</h1>
     </header>
     <nav>
         <ul>
@@ -30,7 +36,7 @@
     </nav>
     <main>
         <section>
-            <h2>User List</h2>
+            <h2>Students List</h2>
             <table id="users-table">
                 <thead>
                     <tr>
@@ -46,6 +52,10 @@
                     <!-- User data will be populated dynamically -->
                 </tbody>
             </table>
+            <div id="buttons-container">
+                <button id="edit-student-button">Edit</button>
+                <button id="delete-student-button">Delete</button>
+            </div>
             <div id="add-user">
                 <button onclick="addUser()">Add Student</button>
             </div>
