@@ -66,13 +66,13 @@ table {
 /* Media query for medium screens (max-width: 768px) */
 @media screen and (max-width: 768px) {
     nav ul {
-        flex-direction: column; /* Change to vertical layout */
-        align-items: center; /* Center the items vertically */
+        flex-direction: column; 
+        align-items: center; 
     }
 
         nav ul li {
-            margin-right: 0; /* Remove horizontal margin */
-            margin-bottom: 10px; /* Add vertical margin for spacing */
+            margin-right: 0; 
+            margin-bottom: 10px; 
         }
 }
 

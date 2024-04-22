@@ -294,7 +294,7 @@ function isValidInput(input, field) {
         case 'Name':
         case 'Student Name':
         case 'Professor Name':
-        case 'Title':
+        case 'Course Name':
         case 'Description':
         case 'Country':
             return /^[A-Za-z\s]+$/.test(input);
