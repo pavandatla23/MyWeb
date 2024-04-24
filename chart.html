@@ -38,6 +38,11 @@
         <canvas id="courseEnrollmentsChart" width="200" height="100"></canvas>
         <h2>Number of courses taken by each Professor</h2>
         <canvas id="professorCoursesChart" width="200" height="100"></canvas>
+        <h2>Students per Country</h2>
+        <canvas id="studentCountryChart" width="200" height="100"></canvas>
+        <h2>Male vs Female Students</h2>
+        <canvas id="studentGenderChart" width="200" height="100"></canvas>
+        
 
 
     </div>
@@ -130,6 +135,41 @@
             return professorCourses;
         }
 
+        // Chart 3: Number of students from each country
+        function generateStudentCountry() {
+            let studentCountry = {};
+
+            users.forEach(user => {
+                const country = user.country;
+                if (!studentCountry[country]) {
+                    studentCountry[country] = 1;
+                } else {
+                    studentCountry[country]++;
+                }
+            });
+
+            return studentCountry;
+        }
+
+        // Chart 4: Number of male and female students
+        function generateStudentGender() {
+            let studentGender = {
+                Male: 0,
+                Female: 0
+            };
+
+            users.forEach(user => {
+                const gender = user.gender;
+                if (gender === 'Male') {
+                    studentGender.Male++;
+                } else if (gender === 'Female') {
+                    studentGender.Female++;
+                }
+            });
+
+            return studentGender;
+        }
+
        
         // Function to create a chart
         function createChart(canvasId, data, label, chartType) {
@@ -191,8 +231,10 @@
             createChart('courseEnrollmentsChart', courseEnrollments, 'Enrollments per Course', 'bar');
             const professorCourses = generateProfessorCourses();
             createChart('professorCoursesChart', professorCourses, 'Courses per Professor', 'pie');
-
-
+            const studentCountry = generateStudentCountry();
+            createChart('studentCountryChart', studentCountry, 'Students per Country', 'doughnut');
+            const studentGender = generateStudentGender();
+            createChart('studentGenderChart', studentGender, 'Male vs Female Students', 'line');
 
             
 
