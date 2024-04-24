@@ -38,6 +38,8 @@
         <canvas id="courseEnrollmentsChart" width="200" height="100"></canvas>
         <h2>Number of courses taken by each Professor</h2>
         <canvas id="professorCoursesChart" width="200" height="100"></canvas>
+        <h2>Students per Country</h2>
+        <canvas id="studentCountryChart" width="200" height="100"></canvas>
 
 
     </div>
@@ -130,6 +132,21 @@
             return professorCourses;
         }
 
+        // Chart 3: Number of students from each country
+        function generateStudentCountry() {
+            let studentCountry = {};
+
+            users.forEach(user => {
+                const country = user.country;
+                if (!studentCountry[country]) {
+                    studentCountry[country] = 1;
+                } else {
+                    studentCountry[country]++;
+                }
+            });
+
+            return studentCountry;
+        }
        
         // Function to create a chart
         function createChart(canvasId, data, label, chartType) {
@@ -191,8 +208,8 @@
             createChart('courseEnrollmentsChart', courseEnrollments, 'Enrollments per Course', 'bar');
             const professorCourses = generateProfessorCourses();
             createChart('professorCoursesChart', professorCourses, 'Courses per Professor', 'pie');
-
-
+            const studentCountry = generateStudentCountry();
+            createChart('studentCountryChart', studentCountry, 'Students per Country', 'doughnut');
 
             
 
