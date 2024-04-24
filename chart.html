@@ -36,8 +36,10 @@
     <div class="container">
         <h2>Enrollments per Course</h2>
         <canvas id="courseEnrollmentsChart" width="200" height="100"></canvas>
+        <h2>Number of courses taken by each Professor</h2>
+        <canvas id="professorCoursesChart" width="200" height="100"></canvas>
 
-        
+
     </div>
 
     <script>
@@ -112,6 +114,22 @@
             return courseEnrollments;
         }
 
+        // Chart 2: Number of courses per professor
+        function generateProfessorCourses() {
+            let professorCourses = {};
+
+            courses.forEach(course => {
+                const professor = course.professor;
+                if (!professorCourses[professor]) {
+                    professorCourses[professor] = 1;
+                } else {
+                    professorCourses[professor]++;
+                }
+            });
+
+            return professorCourses;
+        }
+
        
         // Function to create a chart
         function createChart(canvasId, data, label, chartType) {
@@ -171,6 +189,10 @@
         document.addEventListener("DOMContentLoaded", function () {
             const courseEnrollments = generateCourseEnrollments();
             createChart('courseEnrollmentsChart', courseEnrollments, 'Enrollments per Course', 'bar');
+            const professorCourses = generateProfessorCourses();
+            createChart('professorCoursesChart', professorCourses, 'Courses per Professor', 'pie');
+
+
 
             
 
